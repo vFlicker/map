@@ -5,13 +5,12 @@ export const touchScroll = (element) => {
     top: 0,
     left: 0,
     x: 0,
-    y: 0
+    y: 0,
   };
 
   const mouseDownHandler = (event) => {
     element.style.cursor = 'grabbing';
     element.style.userSelect = 'none';
-
 
     pos = {
       left: element.scrollLeft,
@@ -45,4 +44,4 @@ export const touchScroll = (element) => {
 
   // Attach the handler
   element.addEventListener('mousedown', mouseDownHandler);
-}
+};
