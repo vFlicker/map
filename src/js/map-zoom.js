@@ -6,7 +6,11 @@ const ZoomOption = {
   X2: 'x2',
 };
 
-export const mapZoom = (backgroundElement, mapRegionsElement) => {
+export const mapZoom = (
+  backgroundElement,
+  mapRegionsElement,
+  openButtonElements,
+) => {
   let zoom = ZoomOption.X1;
 
   backgroundElement.addEventListener('wheel', (event) => {
@@ -17,11 +21,19 @@ export const mapZoom = (backgroundElement, mapRegionsElement) => {
     if (zoom === ZoomOption.X1) {
       backgroundElement.style.backgroundImage = `url(${mapBackgroundX1})`;
       mapRegionsElement.style.display = 'block';
+
+      for (const openButtonElement of openButtonElements) {
+        openButtonElement.style.display = 'block';
+      }
     }
 
     if (zoom === ZoomOption.X2) {
       backgroundElement.style.backgroundImage = `url(${mapBackgroundX2})`;
       mapRegionsElement.style.display = 'none';
+
+      for (const openButtonElement of openButtonElements) {
+        openButtonElement.style.display = 'none';
+      }
     }
   });
 };

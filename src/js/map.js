@@ -7,8 +7,9 @@ export const setupMap = () => {
   const backgroundElement = mapElement.querySelector('.background');
   const mapRegionsElement = backgroundElement.querySelector('svg');
   const regionElements = mapRegionsElement.querySelectorAll('path');
+  const openButtonElements = backgroundElement.querySelectorAll('.open-button');
 
   touchScroll(mapElement);
-  mapZoom(backgroundElement, mapRegionsElement);
+  mapZoom(backgroundElement, mapRegionsElement, openButtonElements);
   highlightRegion(regionElements);
 };
