@@ -147,7 +147,7 @@ body {
   width: 290px;
   height: 362px;
 
-  background-image: url(/map/src/img/attention.png);
+  background-image: url('../img/attention.png');
 }
 
 .modal.modal--active .modal__content {
