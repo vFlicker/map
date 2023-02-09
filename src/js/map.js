@@ -3,10 +3,10 @@ import { mapZoom } from './map-zoom';
 import { touchScroll } from './touch-scroll';
 
 export const setupMap = () => {
-  const mapElement = document.querySelector('#map');
+  const mapElement = document.querySelector('.map');
   const backgroundElement = mapElement.querySelector('.background');
-  const mapRegionsElement = mapElement.querySelector('svg');
-  const regionElements = mapElement.querySelectorAll('path');
+  const mapRegionsElement = backgroundElement.querySelector('svg');
+  const regionElements = mapRegionsElement.querySelectorAll('path');
 
   touchScroll(mapElement);
   mapZoom(backgroundElement, mapRegionsElement);
