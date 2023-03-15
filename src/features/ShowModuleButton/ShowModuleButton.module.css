@@ -1,0 +1,7 @@
+.button {
+  width: 76px;
+  height: 93px;
+
+  background-image: url(../../shared/assets/images/module-button.svg);
+  background-size: cover;
+}

@@ -1,0 +1,7 @@
+.lock {
+  width: 33px;
+  height: 33px;
+
+  background-image: url(../../assets/images/lock.svg);
+  background-size: cover;
+}

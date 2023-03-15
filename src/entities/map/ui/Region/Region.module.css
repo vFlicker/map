@@ -1,0 +1,17 @@
+.region {
+  stroke: transparent;
+  fill: transparent;
+  stroke: #E4E4E4;
+  stroke-width: 1px;
+}
+
+.region.active {
+  stroke: #2DDE5F;
+  stroke-width: 2px;
+}
+
+.region.locked {
+  fill: rgba(0, 0, 0, 0.25);
+  stroke: #E4E4E4;
+  stroke-width: 1px;
+}

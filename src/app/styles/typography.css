@@ -1,0 +1,15 @@
+html {
+  font-family: var(--main-font);
+  font-size: 62.5%; /* 10px */
+}
+
+body {
+  font-size: 1.4rem;
+  line-height: 1.2;
+}
+
+input,
+textarea,
+button {
+  font-family: var(--main-font);
+}

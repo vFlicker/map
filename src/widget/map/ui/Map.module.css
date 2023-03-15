@@ -1,0 +1,82 @@
+.map {
+  width: 1280px;
+  height: 720px;
+
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  overflow: auto;
+
+  cursor: grabbing;
+  user-select: none;
+}
+
+.map::-webkit-scrollbar {
+  display: none;
+}
+
+.background {
+  position: relative;
+
+  width: 1920px;
+  height: 1080px;
+}
+
+.button {
+  position: absolute;
+}
+
+.button:nth-child(1) {
+  top: 89px;
+  left: 474px;
+}
+
+.button:nth-child(2) {
+  top: 221px;
+  left: 580px;
+}
+
+.button:nth-child(3) {
+  top: 200px;
+  left: 900px;
+}
+
+.button:nth-child(4) {
+  top: 374px;
+  left: 658px;
+}
+
+.button:nth-child(5) {
+  top: 406px;
+  left: 1217px;
+}
+
+.button:nth-child(6) {
+  top: 503px;
+  left: 1017px;
+}
+
+.button:nth-child(7) {
+  top: 613px;
+  left: 887px;
+}
+
+.button:nth-child(8) {
+  top: 671px;
+  left: 600px;
+}
+
+.button:nth-child(9) {
+  top: 665px;
+  left: 1300px; 
+}
+
+.button:nth-child(10) {
+  top: 841px;
+  left: 986px;
+}
+
+.button:nth-child(11) {
+  top: 874px;
+  left: 1373px;
+}
