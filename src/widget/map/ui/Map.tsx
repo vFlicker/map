@@ -32,11 +32,11 @@ export function Map(): JSX.Element {
       <ShowModuleButton key={id} className={classes.button} moduleId={id} />
     ));
 
-  const lockButtons = lockedModulesIds.map((id) => {
-    return <Lock key={id} className={classes.button} />;
-  });
-
-  console.log(lockedModulesIds);
+  const lockButtons =
+    isDefaultMapZoom &&
+    lockedModulesIds.map((id) => {
+      return <Lock key={id} className={classes.button} />;
+    });
 
   const regions = isDefaultMapZoom && <Regions modulesIds={lockedModulesIds} />;
 

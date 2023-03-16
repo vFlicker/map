@@ -18,8 +18,6 @@ export function ShowModuleButton({
   const dispatch = useAppDispatch();
 
   const handleClick = () => {
-    console.log(12);
-
     dispatch(moduleModel.changeActiveModuleId(moduleId));
   };
 
