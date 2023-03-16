@@ -31,8 +31,17 @@ export const modulesData: ModuleType[] = [
   },
   {
     id: '3',
-    isLocked: true,
-    data: undefined,
+    isLocked: false,
+    data: {
+      title: 'Введение в арбитражные ситуации',
+      goals: [
+        'Словарь арбитражника',
+        'Что такое АС?',
+        'Типы проставления АС. Преимущества, недостатки, особенности',
+        'Правила спорта',
+      ],
+      href: 'https://www.google.com/',
+    },
   },
   {
     id: '4',
