@@ -24,6 +24,7 @@
   height: 362px;
 
   background-image: url(../../../../shared/assets/images/attention.png);
+  background-size: cover;
 }
 
 .header {
@@ -82,7 +83,7 @@
 .title {
   margin: -10px 0 0;
   max-width: 250px;
-  font-size: 20px;
+  font-size: 2rem;
   line-height: 140%;
 }
 
@@ -90,9 +91,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
-}
 
-.list {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -163,4 +162,52 @@
   background-image: linear-gradient(85.26deg, #442C05 -19.66%, #E3C67C 44.4%, #5F4311 106.69%);
 
   z-index: -1;
+}
+
+@media screen and (max-width: 991px) {
+  .body {
+    max-width: 350px;
+    padding: 18px 18px 25px;
+    border-radius: 6px;
+  }
+
+  .body::before {
+    position: absolute;
+    left: auto;
+    right: 0;
+    top: 10px;
+  
+    width: 134px;
+    height: 174px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .module {
+    margin-bottom: 25px;
+    font-size: 10px;
+  }
+
+  .list {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .item {
+    font-size: 14px;
+  }
+
+  .button {
+    width: 307px;
+    height: 66px;
+    justify-content: center;
+    align-items: center;
+  }
 }
