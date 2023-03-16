@@ -67,16 +67,16 @@
 }
 
 .button:nth-child(9) {
-  top: 665px;
-  left: 1300px; 
-}
-
-.button:nth-child(10) {
   top: 841px;
   left: 986px;
 }
 
+.button:nth-child(10) {
+  top: 665px;
+  left: 1300px;
+}
+
 .button:nth-child(11) {
-  top: 874px;
-  left: 1373px;
+  top: 863px;
+  left: 1325px;
 }
