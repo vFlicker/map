@@ -4,13 +4,27 @@ import { regions } from '../../config';
 import { Region } from '../Region';
 
 type RegionsProps = {
+  activeModuleId: ModuleId;
+  hoveredModuleId: ModuleId;
   modulesIds: ModuleId[];
 };
 
-export function Regions({ modulesIds }: RegionsProps): JSX.Element {
+export function Regions({
+  activeModuleId,
+  hoveredModuleId,
+  modulesIds,
+}: RegionsProps): JSX.Element {
   const regionList = regions.map((region) => {
     const isLocked = modulesIds.includes(region.id);
-    return <Region key={region.id} isLocked={isLocked} {...region} />;
+    return (
+      <Region
+        key={region.id}
+        isLocked={isLocked}
+        activeModuleId={activeModuleId}
+        hoveredModuleId={hoveredModuleId}
+        {...region}
+      />
+    );
   });
 
   return (

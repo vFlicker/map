@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { ComponentPropsWithRef, useState, WheelEvent } from 'react';
+import { ComponentPropsWithRef, useEffect, useState, WheelEvent } from 'react';
 
 import { regionImagesSrc } from '~/shared/assets';
 import { useAppDispatch, useAppSelector } from '~/shared/hooks';
@@ -11,14 +11,30 @@ type RegionProps = ComponentPropsWithRef<'path'> & {
   id: string;
   d: string;
   isLocked: boolean;
+  activeModuleId: string;
+  hoveredModuleId: string;
 };
 
-export function Region({ id, d, isLocked }: RegionProps): JSX.Element {
+export function Region({
+  id,
+  d,
+  isLocked,
+  activeModuleId,
+  hoveredModuleId,
+}: RegionProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   const [isActive, setIsActive] = useState(false);
 
   const zoom = useAppSelector(selectZoom);
+
+  useEffect(() => {
+    if (activeModuleId === id || hoveredModuleId === id) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+  }, [id, activeModuleId, hoveredModuleId]);
 
   const handleWheel = (evt: WheelEvent<SVGPathElement>) => {
     if (evt.deltaY < 0 && zoom === '1' && !isLocked) {

@@ -21,11 +21,21 @@ export function ShowModuleButton({
     dispatch(moduleModel.changeActiveModuleId(moduleId));
   };
 
+  const handleMouseEnter = () => {
+    dispatch(moduleModel.changeHoveredModuleId(moduleId));
+  };
+
+  const handleMouseLeave = () => {
+    dispatch(moduleModel.changeHoveredModuleId(''));
+  };
+
   return (
     <button
       {...props}
       className={cn(className, classes.button)}
       onClick={handleClick}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <span className="visually-hidden">
         Открыть всплывающее окно с модулем

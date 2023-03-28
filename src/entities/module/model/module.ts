@@ -13,6 +13,7 @@ const modulesAdapter = createEntityAdapter<ModuleType>();
 
 const initialState = modulesAdapter.getInitialState({
   activeModuleId: '',
+  hoveredModuleId: '',
   status: 'idle',
   error: null,
 });
@@ -24,6 +25,9 @@ const moduleSlice = createSlice({
     changeActiveModuleId: (state, action: PayloadAction<ModuleId>) => {
       state.activeModuleId = action.payload;
     },
+    changeHoveredModuleId: (state, action: PayloadAction<ModuleId>) => {
+      state.hoveredModuleId = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAllModules.fulfilled, (state, action) => {
@@ -33,7 +37,8 @@ const moduleSlice = createSlice({
   },
 });
 
-export const { changeActiveModuleId } = moduleSlice.actions;
+export const { changeActiveModuleId, changeHoveredModuleId } =
+  moduleSlice.actions;
 
 export default moduleSlice.reducer;
 
@@ -72,4 +77,8 @@ export const selectUnlockedModulesIds = createSelector(
 
 export const selectActiveModuleId = (state: RootState) => {
   return state.MODULE.activeModuleId;
+};
+
+export const selectHoveredModuleId = (state: RootState) => {
+  return state.MODULE.hoveredModuleId;
 };

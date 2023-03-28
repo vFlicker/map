@@ -20,8 +20,9 @@ export function Map(): JSX.Element {
   const unlockedModulesIds = useAppSelector(
     moduleModel.selectUnlockedModulesIds,
   );
-
   const lockedModulesIds = useAppSelector(moduleModel.selectLockedModulesIds);
+  const activeModuleId = useAppSelector(moduleModel.selectActiveModuleId);
+  const hoveredModuleId = useAppSelector(moduleModel.selectHoveredModuleId);
 
   const style = { backgroundImage: `url(${image})` };
   const isDefaultMapZoom = zoom === '1';
@@ -38,7 +39,13 @@ export function Map(): JSX.Element {
       return <Lock key={id} className={classes.button} />;
     });
 
-  const regions = isDefaultMapZoom && <Regions modulesIds={lockedModulesIds} />;
+  const regions = isDefaultMapZoom && (
+    <Regions
+      activeModuleId={activeModuleId}
+      hoveredModuleId={hoveredModuleId}
+      modulesIds={lockedModulesIds}
+    />
+  );
 
   return (
     <div className={classes.map} ref={mapRef}>
