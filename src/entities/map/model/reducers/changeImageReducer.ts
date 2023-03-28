@@ -4,7 +4,7 @@ import { MapState } from '../../types';
 
 export const changeImageReducer = (
   state: MapState,
-  { payload }: PayloadAction<string>,
+  { payload }: PayloadAction<SrcString>,
 ) => {
   state.image = payload;
 };

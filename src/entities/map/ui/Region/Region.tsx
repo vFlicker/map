@@ -11,16 +11,15 @@ import {
   selectActiveRegion,
   selectZoom,
 } from '../../model/map';
+import { RegionData } from '../../types';
 import classes from './Region.module.css';
 
 type RegionProps = ComponentPropsWithRef<'path'> & {
-  id: string;
-  d: string;
+  region: RegionData;
   isLocked: boolean;
-  activeModuleId: string;
 };
 
-export function Region({ id, d, isLocked }: RegionProps): JSX.Element {
+export function Region({ region, isLocked }: RegionProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   const [isActive, setIsActive] = useState(false);
@@ -29,16 +28,16 @@ export function Region({ id, d, isLocked }: RegionProps): JSX.Element {
   const zoom = useAppSelector(selectZoom);
 
   useEffect(() => {
-    if (activeRegion === id) {
+    if (activeRegion === region.id) {
       setIsActive(true);
     } else {
       setIsActive(false);
     }
-  }, [id, activeRegion]);
+  }, [region.id, activeRegion]);
 
   const handleWheel = (evt: WheelEvent<SVGPathElement>) => {
     if (evt.deltaY < 0 && zoom === '1' && !isLocked) {
-      const index = Number(id) - 1;
+      const index = Number(region.id) - 1;
       const regionImage = regionImagesSrc[index];
 
       dispatch(changeZoom('2'));
@@ -46,7 +45,7 @@ export function Region({ id, d, isLocked }: RegionProps): JSX.Element {
     }
   };
 
-  const handleMouseEnter = () => dispatch(changeActiveRegion(id));
+  const handleMouseEnter = () => dispatch(changeActiveRegion(region.id));
   const handleMouseLeave = () => dispatch(changeActiveRegion(''));
 
   const className = cn(classes.region, {
@@ -56,8 +55,8 @@ export function Region({ id, d, isLocked }: RegionProps): JSX.Element {
 
   return (
     <path
-      id={id}
-      d={d}
+      id={region.id}
+      d={region.d}
       className={className}
       onWheel={handleWheel}
       onMouseEnter={handleMouseEnter}

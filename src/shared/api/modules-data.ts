@@ -1,4 +1,4 @@
-import { ModuleType } from '~/entities/module';
+import { ModuleType } from '~/shared/types/module';
 
 export const modulesData: ModuleType[] = [
   {

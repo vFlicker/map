@@ -1,17 +1,15 @@
-import {
-  createEntityAdapter,
-  createSelector,
-  createSlice,
-  PayloadAction,
-} from '@reduxjs/toolkit';
+import { createSelector, createSlice } from '@reduxjs/toolkit';
 
 import { fetchAllModules } from '~/shared/api-actions';
 
-import { ModuleId, ModuleType } from '../types';
+import { modulesAdapter } from '../helpers';
+import { ModuleState } from '../types';
+import {
+  changeActiveModuleIdReducer,
+  fetchAllModulesFulfilled,
+} from './reducers';
 
-const modulesAdapter = createEntityAdapter<ModuleType>();
-
-const initialState = modulesAdapter.getInitialState({
+const initialState: ModuleState = modulesAdapter.getInitialState({
   activeModuleId: '',
   hoveredModuleId: '',
   status: 'idle',
@@ -22,28 +20,22 @@ const moduleSlice = createSlice({
   name: 'module',
   initialState,
   reducers: {
-    changeActiveModuleId: (state, action: PayloadAction<ModuleId>) => {
-      state.activeModuleId = action.payload;
-    },
+    changeActiveModuleId: changeActiveModuleIdReducer,
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchAllModules.fulfilled, (state, action) => {
-      modulesAdapter.setMany(state, action.payload.modules);
-      state.status = 'succeeded';
-    });
+    builder.addCase(fetchAllModules.fulfilled, fetchAllModulesFulfilled);
   },
 });
 
+// Actions
 export const { changeActiveModuleId } = moduleSlice.actions;
 
+// Reducer
 export default moduleSlice.reducer;
 
-// selectors
-export const {
-  selectAll: selectModules,
-  selectIds: selectModulesIds,
-  selectById: selectModuleById,
-} = modulesAdapter.getSelectors((state: RootState) => state.MODULE);
+// Selectors
+export const { selectAll: selectModules, selectById: selectModuleById } =
+  modulesAdapter.getSelectors((state: RootState) => state.MODULE);
 
 const selectLockedModules = createSelector(selectModules, (modules) => {
   const lockedModules = modules.filter(({ isLocked }) => isLocked);

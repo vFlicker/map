@@ -1,13 +1,10 @@
-type ModuleData = {
-  title: string;
-  goals: string[];
-  href: string;
-};
+import { EntityState } from '@reduxjs/toolkit';
 
-export type ModuleId = string;
+import { ModuleType } from '~/shared/types/module';
 
-export type ModuleType = {
-  id: ModuleId;
-  isLocked: boolean;
-  data?: ModuleData;
+export type ModuleState = EntityState<ModuleType> & {
+  activeModuleId: ModuleId;
+  hoveredModuleId: string;
+  status: string;
+  error: null;
 };

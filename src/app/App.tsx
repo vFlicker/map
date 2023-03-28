@@ -3,10 +3,9 @@ import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 
 import { Map } from '~/widget/map';
-import { Module, moduleModel } from '~/entities/module';
+import { ModuleModal } from '~/features/ModuleModal';
 import { fetchAllModules } from '~/shared/api-actions';
-import { useAppDispatch, useAppSelector } from '~/shared/hooks';
-import { Modal } from '~/shared/ui/Modal';
+import { useAppDispatch } from '~/shared/hooks';
 
 import { withProviders } from './providers';
 import { store } from './store';
@@ -19,21 +18,11 @@ function App(): JSX.Element {
     dispatch(fetchAllModules());
   }, [dispatch]);
 
-  const activeModuleId = useAppSelector(moduleModel.selectActiveModuleId);
-
-  const handleCloseModule = () => {
-    dispatch(moduleModel.changeActiveModuleId(''));
-  };
-
-  const isModalOpen = Boolean(activeModuleId);
-
   return (
     <Provider store={store}>
       <Map />
 
-      <Modal isOpen={isModalOpen} onClose={handleCloseModule}>
-        <Module id={activeModuleId} />
-      </Modal>
+      <ModuleModal />
     </Provider>
   );
 }

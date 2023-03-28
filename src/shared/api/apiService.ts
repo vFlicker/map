@@ -1,4 +1,4 @@
-import { ModuleType } from '~/entities/module';
+import { ModuleType } from '~/shared/types/module';
 
 import { modulesData } from './modules-data';
 

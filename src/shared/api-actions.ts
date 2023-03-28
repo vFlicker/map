@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { normalize, schema } from 'normalizr';
 
-import { ModuleType } from '~/entities/module';
 import { ApiError, apiService, isApiError } from '~/shared/api';
+import { ModuleType } from '~/shared/types/module';
 
 type ThunkOptions = {
   state: RootState;
@@ -10,7 +10,7 @@ type ThunkOptions = {
   rejectValue: ApiError;
 };
 
-type NormalizedModules = {
+export type NormalizedModules = {
   modules: { [key: string]: ModuleType };
 };
 

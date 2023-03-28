@@ -1,12 +1,12 @@
-export type Config = {
+export type RegionData = {
   id: string;
   d: string;
-}[];
+};
 
 export type Zoom = '1' | '2';
 
 export type MapState = {
-  activeRegion: string;
-  image: string;
+  activeRegion: ModuleId;
+  image: SrcString;
   zoom: Zoom;
 };

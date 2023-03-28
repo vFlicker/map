@@ -1,7 +1,6 @@
 import { useAppSelector } from '~/shared/hooks';
 
 import { selectModuleById } from '../../model/module';
-import { ModuleId } from '../../types';
 import classes from './Module.module.css';
 
 type ModuleProps = {
