@@ -4,7 +4,13 @@ import { ComponentPropsWithRef, useEffect, useState, WheelEvent } from 'react';
 import { regionImagesSrc } from '~/shared/assets';
 import { useAppDispatch, useAppSelector } from '~/shared/hooks';
 
-import { changeImage, changeZoom, selectZoom } from '../../model/map';
+import {
+  changeActiveRegion,
+  changeImage,
+  changeZoom,
+  selectActiveRegion,
+  selectZoom,
+} from '../../model/map';
 import classes from './Region.module.css';
 
 type RegionProps = ComponentPropsWithRef<'path'> & {
@@ -12,29 +18,23 @@ type RegionProps = ComponentPropsWithRef<'path'> & {
   d: string;
   isLocked: boolean;
   activeModuleId: string;
-  hoveredModuleId: string;
 };
 
-export function Region({
-  id,
-  d,
-  isLocked,
-  activeModuleId,
-  hoveredModuleId,
-}: RegionProps): JSX.Element {
+export function Region({ id, d, isLocked }: RegionProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   const [isActive, setIsActive] = useState(false);
 
+  const activeRegion = useAppSelector(selectActiveRegion);
   const zoom = useAppSelector(selectZoom);
 
   useEffect(() => {
-    if (activeModuleId === id || hoveredModuleId === id) {
+    if (activeRegion === id) {
       setIsActive(true);
     } else {
       setIsActive(false);
     }
-  }, [id, activeModuleId, hoveredModuleId]);
+  }, [id, activeRegion]);
 
   const handleWheel = (evt: WheelEvent<SVGPathElement>) => {
     if (evt.deltaY < 0 && zoom === '1' && !isLocked) {
@@ -46,8 +46,8 @@ export function Region({
     }
   };
 
-  const handleMouseEnter = () => setIsActive(true);
-  const handleMouseLeave = () => setIsActive(false);
+  const handleMouseEnter = () => dispatch(changeActiveRegion(id));
+  const handleMouseLeave = () => dispatch(changeActiveRegion(''));
 
   const className = cn(classes.region, {
     [classes.active]: !isLocked && isActive,

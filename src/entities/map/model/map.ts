@@ -1,11 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { mapBackgroundX1ImageSrc } from '~/shared/assets';
-import { MapState } from '../types';
 
-import { changeImageReducer, changeZoomReducer } from './reducers';
+import { MapState } from '../types';
+import {
+  changeActiveRegionReducer,
+  changeImageReducer,
+  changeZoomReducer,
+} from './reducers';
 
 const initialState: MapState = {
+  activeRegion: '',
   image: mapBackgroundX1ImageSrc,
   zoom: '1',
 };
@@ -14,14 +19,16 @@ const mapSlice = createSlice({
   name: 'hotels',
   initialState,
   reducers: {
+    changeActiveRegion: changeActiveRegionReducer,
     changeImage: changeImageReducer,
     changeZoom: changeZoomReducer,
   },
 });
 
-export const { changeImage, changeZoom } = mapSlice.actions;
+export const { changeActiveRegion, changeImage, changeZoom } = mapSlice.actions;
 
 export default mapSlice.reducer;
 
+export const selectActiveRegion = (state: RootState) => state.MAP.activeRegion;
 export const selectImage = (state: RootState) => state.MAP.image;
 export const selectZoom = (state: RootState) => state.MAP.zoom;

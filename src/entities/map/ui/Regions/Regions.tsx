@@ -5,13 +5,11 @@ import { Region } from '../Region';
 
 type RegionsProps = {
   activeModuleId: ModuleId;
-  hoveredModuleId: ModuleId;
   modulesIds: ModuleId[];
 };
 
 export function Regions({
   activeModuleId,
-  hoveredModuleId,
   modulesIds,
 }: RegionsProps): JSX.Element {
   const regionList = regions.map((region) => {
@@ -21,7 +19,6 @@ export function Regions({
         key={region.id}
         isLocked={isLocked}
         activeModuleId={activeModuleId}
-        hoveredModuleId={hoveredModuleId}
         {...region}
       />
     );

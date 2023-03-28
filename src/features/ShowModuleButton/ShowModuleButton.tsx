@@ -1,6 +1,7 @@
 import cn from 'classnames';
 import { ComponentPropsWithoutRef } from 'react';
 
+import { mapModel } from '~/entities/map';
 import { ModuleId, moduleModel } from '~/entities/module';
 import { useAppDispatch } from '~/shared/hooks';
 
@@ -22,11 +23,7 @@ export function ShowModuleButton({
   };
 
   const handleMouseEnter = () => {
-    dispatch(moduleModel.changeHoveredModuleId(moduleId));
-  };
-
-  const handleMouseLeave = () => {
-    dispatch(moduleModel.changeHoveredModuleId(''));
+    dispatch(mapModel.changeActiveRegion(moduleId));
   };
 
   return (
@@ -35,7 +32,6 @@ export function ShowModuleButton({
       className={cn(className, classes.button)}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
     >
       <span className="visually-hidden">
         Открыть всплывающее окно с модулем

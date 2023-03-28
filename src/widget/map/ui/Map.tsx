@@ -22,7 +22,6 @@ export function Map(): JSX.Element {
   );
   const lockedModulesIds = useAppSelector(moduleModel.selectLockedModulesIds);
   const activeModuleId = useAppSelector(moduleModel.selectActiveModuleId);
-  const hoveredModuleId = useAppSelector(moduleModel.selectHoveredModuleId);
 
   const style = { backgroundImage: `url(${image})` };
   const isDefaultMapZoom = zoom === '1';
@@ -40,11 +39,7 @@ export function Map(): JSX.Element {
     });
 
   const regions = isDefaultMapZoom && (
-    <Regions
-      activeModuleId={activeModuleId}
-      hoveredModuleId={hoveredModuleId}
-      modulesIds={lockedModulesIds}
-    />
+    <Regions activeModuleId={activeModuleId} modulesIds={lockedModulesIds} />
   );
 
   return (
