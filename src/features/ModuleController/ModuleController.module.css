@@ -64,6 +64,7 @@
   font-weight: 400;
   font-size: 1.2rem;
   line-height: 2.8;
+  user-select: none;
 }
 
 .modulesCount span {
@@ -85,12 +86,24 @@
   background-size: cover;
 }
 
-.button.left {
+.button.prev {
   left: 0;
-  background-image: url(../../shared/assets/images/button-left.png);
+  background-image: url(../../shared/assets/images/button-prev.png);
 }
 
-.button.right {
+.button.next {
   right: 0;
-  background-image: url(../../shared/assets/images/button-right.png);
+  background-image: url(../../shared/assets/images/button-next.png);
+}
+
+.moduleWrapper {
+  position: fixed;
+  bottom: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  padding: 0px 16px 25px;
 }
