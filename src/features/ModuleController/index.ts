@@ -1,0 +1,1 @@
+export { ModuleController } from './ModuleController';

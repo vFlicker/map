@@ -12,6 +12,12 @@ type ModalProps = PropsWithChildren<{
 export function Modal({ isOpen, children, onClose }: ModalProps): JSX.Element {
   const modalRef = useRef<HTMLDivElement | null>(null);
 
+  // Close modal if isOpen changed
+  useEffect(() => {
+    if (isOpen === false) onClose();
+  }, [onClose, isOpen]);
+
+  // Close modal on outside click
   useEffect(() => {
     const onOutsideClick = (evt: globalThis.MouseEvent) => {
       if (evt.target) {
@@ -22,19 +28,20 @@ export function Modal({ isOpen, children, onClose }: ModalProps): JSX.Element {
       }
     };
 
+    if (modalRef.current) {
+      modalRef.current.addEventListener('click', onOutsideClick);
+    }
+  }, [onClose]);
+
+  // Close modal on Escape pass
+  useEffect(() => {
     const onEscKeydown = (evt: KeyboardEvent) => {
       if (evt.code === 'Escape') onClose();
     };
 
-    if (modalRef.current) {
-      modalRef.current.addEventListener('click', onOutsideClick);
-    }
-
     document.body.addEventListener('keydown', onEscKeydown);
 
-    return () => {
-      document.body.removeEventListener('keydown', onEscKeydown);
-    };
+    return () => document.body.removeEventListener('keydown', onEscKeydown);
   }, [onClose]);
 
   return (

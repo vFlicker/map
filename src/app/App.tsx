@@ -3,9 +3,10 @@ import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 
 import { Map } from '~/widget/map';
+import { ModuleController } from '~/features/ModuleController';
 import { ModuleModal } from '~/features/ModuleModal';
 import { fetchAllModules } from '~/shared/api-actions';
-import { useAppDispatch } from '~/shared/hooks';
+import { useAppDispatch, useIsMobile } from '~/shared/hooks';
 
 import { withProviders } from './providers';
 import { store } from './store';
@@ -18,11 +19,13 @@ function App(): JSX.Element {
     dispatch(fetchAllModules());
   }, [dispatch]);
 
+  const isMobile = useIsMobile();
+
   return (
     <Provider store={store}>
       <Map />
 
-      <ModuleModal />
+      {isMobile ? <ModuleController /> : <ModuleModal />}
     </Provider>
   );
 }

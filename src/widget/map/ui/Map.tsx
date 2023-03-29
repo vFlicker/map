@@ -21,7 +21,6 @@ export function Map(): JSX.Element {
     moduleModel.selectUnlockedModulesIds,
   );
   const lockedModulesIds = useAppSelector(moduleModel.selectLockedModulesIds);
-  const activeModuleId = useAppSelector(moduleModel.selectActiveModuleId);
 
   const style = { backgroundImage: `url(${image})` };
   const isDefaultMapZoom = zoom === '1';

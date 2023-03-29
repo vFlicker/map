@@ -1,0 +1,95 @@
+.controller {
+  position: fixed;
+  bottom: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  padding: 0px 16px 12px;
+
+  background-image: linear-gradient(179.77deg, rgba(0, 0, 0, 0) 0.2%, rgba(0, 0, 0, 0.84) 91.5%);
+  backdrop-filter: blur(2px);
+}
+
+.content {
+  width: 100%;
+  max-width: 343px;
+  height: 155px;
+  padding: 17px 14px 20px;
+
+  color: white;
+  background-color: #1c1803;
+  background-image: url(../../shared/assets/images/preview/module-1.png);
+}
+
+.moduleTitle {
+  margin-bottom: 5px;
+}
+
+.title {
+  font-weight: 800;
+  font-size: 1.6rem;
+  line-height: 1.4;
+}
+
+.buttonLink {
+  padding-right: 18px;
+
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.4;
+
+  color: #CCC19C;
+
+  background-image: url(../../shared/assets/images/arrow.svg);
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.footer {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 146px;
+  padding-top: 17px;
+}
+
+.modulesCount {
+  color: #514935;
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 2.8;
+}
+
+.modulesCount span {
+  color: #776B4B;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1.4;
+}
+
+.button {
+  position: absolute;
+
+  width: 48px;
+  height: 25px;
+
+  border-radius: 12px;
+
+  background-color: #131211;
+  background-size: cover;
+}
+
+.button.left {
+  left: 0;
+  background-image: url(../../shared/assets/images/button-left.png);
+}
+
+.button.right {
+  right: 0;
+  background-image: url(../../shared/assets/images/button-right.png);
+}

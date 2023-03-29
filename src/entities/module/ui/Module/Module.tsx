@@ -1,4 +1,5 @@
 import { useAppSelector } from '~/shared/hooks';
+import { ModuleTitle } from '~/shared/ui/ModuleTitle';
 
 import { selectModuleById } from '../../model/module';
 import classes from './Module.module.css';
@@ -23,9 +24,7 @@ export function Module({ id }: ModuleProps): JSX.Element | null {
   return (
     <div id="modal-content" className={classes.body}>
       <header className={classes.header}>
-        <div className={classes.module}>
-          <span>Модуль {id}</span>
-        </div>
+        <ModuleTitle className={classes.moduleTitle} size="big" id={id} />
         <h2 className={classes.title}>{title}</h2>
       </header>
       <div>

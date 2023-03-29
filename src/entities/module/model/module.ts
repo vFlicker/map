@@ -11,7 +11,6 @@ import {
 
 const initialState: ModuleState = modulesAdapter.getInitialState({
   activeModuleId: '',
-  hoveredModuleId: '',
   status: 'idle',
   error: null,
 });
