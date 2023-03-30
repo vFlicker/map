@@ -1,0 +1,35 @@
+.content {
+  width: 100%;
+  max-width: 343px;
+  height: 155px;
+  padding: 17px 14px 20px;
+  border-radius: 12px;
+
+  color: white;
+  background-color: #1c1803;
+  background-image: url(../../../../shared/assets/images/preview/module-1.png);
+}
+
+.token {
+  margin-bottom: 5px;
+}
+
+.title {
+  font-weight: 800;
+  font-size: 1.6rem;
+  line-height: 1.4;
+}
+
+.button {
+  padding-right: 18px;
+
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.4;
+
+  color: #CCC19C;
+
+  background-image: url(../../../../shared/assets/images/arrow.svg);
+  background-repeat: no-repeat;
+  background-position: right center;
+}

@@ -49,53 +49,6 @@
   background-position: right center;
 }
 
-.footer {
-  position: relative;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 146px;
-  padding-top: 17px;
-}
-
-.modulesCount {
-  color: #514935;
-  font-weight: 400;
-  font-size: 1.2rem;
-  line-height: 2.8;
-  user-select: none;
-}
-
-.modulesCount span {
-  color: #776B4B;
-  font-weight: 700;
-  font-size: 2rem;
-  line-height: 1.4;
-}
-
-.button {
-  position: absolute;
-
-  width: 48px;
-  height: 25px;
-
-  border-radius: 12px;
-
-  background-color: #131211;
-  background-size: cover;
-}
-
-.button.prev {
-  left: 0;
-  background-image: url(../../shared/assets/images/button-prev.png);
-}
-
-.button.next {
-  right: 0;
-  background-image: url(../../shared/assets/images/button-next.png);
-}
-
 .moduleWrapper {
   position: fixed;
   bottom: 0;

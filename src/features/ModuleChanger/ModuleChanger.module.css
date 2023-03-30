@@ -1,0 +1,31 @@
+.wrapper {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 146px;
+  padding-top: 17px;
+}
+
+.button {
+  position: absolute;
+
+  width: 48px;
+  height: 25px;
+
+  border-radius: 12px;
+
+  background-color: #131211;
+  background-size: cover;
+}
+
+.button.prev {
+  left: 0;
+  background-image: url(../../shared/assets/images/button-prev.png);
+}
+
+.button.next {
+  right: 0;
+  background-image: url(../../shared/assets/images/button-next.png);
+}

@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 
 import { Map } from '~/widget/map';
-import { ModuleController } from '~/features/ModuleController';
+import { ModuleController } from '~/widget/moduleController';
 import { ModuleModal } from '~/features/ModuleModal';
 import { fetchAllModules } from '~/shared/api-actions';
 import { useAppDispatch, useIsMobile } from '~/shared/hooks';

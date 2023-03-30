@@ -1,7 +1,7 @@
 import { useAppSelector } from '~/shared/hooks';
-import { ModuleTitle } from '~/shared/ui/ModuleTitle';
 
 import { selectModuleById } from '../../model/module';
+import { ModuleToken } from '../ModuleToken';
 import classes from './Module.module.css';
 
 type ModuleProps = {
@@ -24,7 +24,7 @@ export function Module({ id }: ModuleProps): JSX.Element | null {
   return (
     <div id="modal-content" className={classes.body}>
       <header className={classes.header}>
-        <ModuleTitle className={classes.moduleTitle} size="big" id={id} />
+        <ModuleToken className={classes.token} id={id} size="big" />
         <h2 className={classes.title}>{title}</h2>
       </header>
       <div>
