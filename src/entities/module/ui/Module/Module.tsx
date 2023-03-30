@@ -22,7 +22,7 @@ export function Module({ id }: ModuleProps): JSX.Element | null {
   ));
 
   return (
-    <div id="modal-content" className={classes.body}>
+    <div className={classes.body} data-modal-content>
       <header className={classes.header}>
         <ModuleToken className={classes.token} id={id} size="big" />
         <h2 className={classes.title}>{title}</h2>

@@ -29,7 +29,7 @@ export function ModuleChanger(): JSX.Element {
 
   return (
     <div className={classes.wrapper}>
-      <div className={classes.count}>
+      <div className={classes.counter}>
         <span>{currentModule}</span>/{modulesCount}
       </div>
       <button

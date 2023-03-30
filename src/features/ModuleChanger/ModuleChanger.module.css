@@ -8,6 +8,21 @@
   padding-top: 17px;
 }
 
+.counter {
+  color: #514935;
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 2.8;
+  user-select: none;
+}
+
+.counter span {
+  color: #776B4B;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1.4;
+}
+
 .button {
   position: absolute;
 

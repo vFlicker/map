@@ -9,11 +9,7 @@ type ModuleProps = {
   className?: string;
 };
 
-export function ModuleToken({
-  id,
-  size,
-  className,
-}: ModuleProps): JSX.Element | null {
+export function ModuleToken({ id, size, className }: ModuleProps): JSX.Element {
   const currentModule = getCurrentModule(id);
 
   return (

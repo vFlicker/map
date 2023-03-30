@@ -22,7 +22,7 @@ export function Modal({ isOpen, children, onClose }: ModalProps): JSX.Element {
     const onOutsideClick = (evt: globalThis.MouseEvent) => {
       if (evt.target) {
         const element = evt.target as Element;
-        const parentElement = element.closest('#modal-content');
+        const parentElement = element.closest('[data-modal-content]');
 
         if (!parentElement) onClose();
       }
@@ -53,10 +53,8 @@ export function Modal({ isOpen, children, onClose }: ModalProps): JSX.Element {
         classNames={{ enterDone: classes.enterDone, exit: classes.exit }}
         nodeRef={modalRef}
       >
-        <section id="modal-module" className={classes.modal} ref={modalRef}>
-          <div className={classes.inner}>
-            <div>{children}</div>
-          </div>
+        <section className={classes.modal} ref={modalRef}>
+          <div className={classes.inner}>{children}</div>
         </section>
       </CSSTransition>
     </ReactPortal>

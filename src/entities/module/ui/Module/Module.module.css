@@ -124,6 +124,7 @@
 @media screen and (max-width: 991px) {
   .body {
     max-width: 350px;
+    margin-top: auto;
     padding: 18px 18px 25px;
     border-radius: 6px;
   }
@@ -141,6 +142,11 @@
   .header {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .token {
+    margin-right: 0;
+    margin-bottom: 20px;
   }
 
   .title {
