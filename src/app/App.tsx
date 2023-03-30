@@ -4,9 +4,11 @@ import { Provider } from 'react-redux';
 
 import { Map } from '~/widget/map';
 import { ModuleController } from '~/widget/moduleController';
-import { ModuleModal } from '~/features/ModuleModal';
+import { modalModel } from '~/entities/modal';
+import { Module, moduleModel } from '~/entities/module';
 import { fetchAllModules } from '~/shared/api-actions';
-import { useAppDispatch, useIsMobile } from '~/shared/hooks';
+import { useAppDispatch, useAppSelector, useIsMobile } from '~/shared/hooks';
+import { Modal } from '~/shared/ui/Modal';
 
 import { withProviders } from './providers';
 import { store } from './store';
@@ -21,11 +23,27 @@ function App(): JSX.Element {
 
   const isMobile = useIsMobile();
 
+  const activeModuleId = useAppSelector(moduleModel.selectActiveModuleId);
+  const isOpenModal = useAppSelector(modalModel.selectIsOpen);
+
+  const handleCloseModule = () => {
+    dispatch(modalModel.close());
+  };
+
+  const modal = (
+    <Modal isOpen={isOpenModal} onClose={handleCloseModule}>
+      <Module id={activeModuleId} />
+    </Modal>
+  );
+
+  const moduleController = isMobile && !isOpenModal && <ModuleController />;
+
   return (
     <Provider store={store}>
       <Map />
 
-      {isMobile ? <ModuleController /> : <ModuleModal />}
+      {modal}
+      {moduleController}
     </Provider>
   );
 }

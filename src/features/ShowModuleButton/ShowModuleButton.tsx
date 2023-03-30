@@ -2,6 +2,7 @@ import cn from 'classnames';
 import { ComponentPropsWithoutRef } from 'react';
 
 import { mapModel } from '~/entities/map';
+import { modalModel } from '~/entities/modal';
 import { moduleModel } from '~/entities/module';
 import { useAppDispatch } from '~/shared/hooks';
 
@@ -20,6 +21,7 @@ export function ShowModuleButton({
 
   const handleClick = () => {
     dispatch(moduleModel.changeActiveModuleId(moduleId));
+    dispatch(modalModel.open());
   };
 
   const handleMouseEnter = () => {

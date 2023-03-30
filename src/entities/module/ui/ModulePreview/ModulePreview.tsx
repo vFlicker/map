@@ -20,7 +20,7 @@ export function ModulePreview({
   const { title } = module.data;
 
   return (
-    <div data-content className={classes.content}>
+    <div className={classes.content}>
       <ModuleToken className={classes.token} id={id} size="small" />
       <h2 className={classes.title}>{title}</h2>
       <button className={classes.button} onClick={onOpen}>
