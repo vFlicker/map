@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithRef, forwardRef } from 'react';
 
 import { mapModel } from '~/entities/map';
 import { modalModel } from '~/entities/modal';
@@ -8,15 +8,14 @@ import { useAppDispatch } from '~/shared/hooks';
 
 import classes from './ShowModuleButton.module.css';
 
-type ShowModuleButtonProps = ComponentPropsWithoutRef<'button'> & {
+type ShowModuleButtonProps = ComponentPropsWithRef<'button'> & {
   moduleId: ModuleId;
 };
 
-export function ShowModuleButton({
-  moduleId,
-  className,
-  ...props
-}: ShowModuleButtonProps): JSX.Element {
+export const ShowModuleButton = forwardRef<
+  HTMLButtonElement,
+  ShowModuleButtonProps
+>(function ShowModuleButton({ moduleId, className, ...props }, ref) {
   const dispatch = useAppDispatch();
 
   const handleClick = () => {
@@ -34,10 +33,11 @@ export function ShowModuleButton({
       className={cn(className, classes.button)}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
+      ref={ref}
     >
       <span className="visually-hidden">
         Открыть всплывающее окно с модулем
       </span>
     </button>
   );
-}
+});

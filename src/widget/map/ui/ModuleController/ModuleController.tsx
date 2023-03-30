@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { MutableRefObject, useEffect } from 'react';
 
 import { ModuleChanger } from '~/features/ModuleChanger';
 import { modalModel } from '~/entities/modal';
@@ -7,7 +7,13 @@ import { useAppDispatch, useAppSelector, useIsMobile } from '~/shared/hooks';
 
 import classes from './ModuleController.module.css';
 
-export function ModuleController(): JSX.Element | null {
+type ModuleControllerProps = {
+  moduleButtonsRef: MutableRefObject<HTMLButtonElement[]>;
+};
+
+export function ModuleController({
+  moduleButtonsRef,
+}: ModuleControllerProps): JSX.Element | null {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -29,7 +35,7 @@ export function ModuleController(): JSX.Element | null {
   return (
     <div className={classes.controller}>
       <ModulePreview id={activeModuleId} onOpen={handleModuleOpen} />
-      <ModuleChanger />
+      <ModuleChanger moduleButtonsRef={moduleButtonsRef} />
     </div>
   );
 }

@@ -6,11 +6,13 @@ import { moduleModel } from '~/entities/module';
 import { useAppSelector } from '~/shared/hooks';
 import { Lock } from '~/shared/ui/Lock';
 
-import { useDrag, useWheel } from '../hooks';
+import { useDrag, useWheel } from '../../hooks';
+import { ModuleController } from '../ModuleController';
 import classes from './Map.module.css';
 
 export function Map(): JSX.Element {
   const mapRef = useRef<HTMLDivElement>(null);
+  const buttonsRef = useRef<HTMLButtonElement[]>([]);
 
   useDrag(mapRef);
   useWheel(mapRef);
@@ -27,8 +29,15 @@ export function Map(): JSX.Element {
 
   const moduleButtons =
     isDefaultMapZoom &&
-    unlockedModulesIds.map((id) => (
-      <ShowModuleButton key={id} className={classes.button} moduleId={id} />
+    unlockedModulesIds.map((id, index) => (
+      <ShowModuleButton
+        key={id}
+        className={classes.button}
+        moduleId={id}
+        ref={(button: HTMLButtonElement) => {
+          buttonsRef.current[index] = button;
+        }}
+      />
     ));
 
   const lockButtons =
@@ -46,6 +55,8 @@ export function Map(): JSX.Element {
         {lockButtons}
         {regions}
       </div>
+
+      <ModuleController moduleButtonsRef={buttonsRef} />
     </div>
   );
 }

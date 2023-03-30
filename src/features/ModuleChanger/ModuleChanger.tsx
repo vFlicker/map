@@ -1,11 +1,18 @@
 import cn from 'classnames';
+import { MutableRefObject, useEffect } from 'react';
 
 import { getCurrentModule, moduleModel } from '~/entities/module';
 import { useAppDispatch, useAppSelector } from '~/shared/hooks';
 
 import classes from './ModuleChanger.module.css';
 
-export function ModuleChanger(): JSX.Element {
+type ModuleChangerProps = {
+  moduleButtonsRef: MutableRefObject<HTMLButtonElement[]>;
+};
+
+export function ModuleChanger({
+  moduleButtonsRef,
+}: ModuleChangerProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   const activeModuleId = useAppSelector(moduleModel.selectActiveModuleId);
@@ -13,6 +20,19 @@ export function ModuleChanger(): JSX.Element {
   const allModules = useAppSelector(moduleModel.selectModules);
 
   const id = Number(activeModuleId);
+
+  useEffect(() => {
+    const buttons = moduleButtonsRef.current;
+    const button = buttons[id - 1];
+
+    if (button) {
+      button.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'center',
+      });
+    }
+  }, [id, moduleButtonsRef]);
 
   const handlePrevButtonClick = () => {
     dispatch(moduleModel.changeActiveModuleId(String(id - 1)));

@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 
 import { Map } from '~/widget/map';
-import { ModuleController } from '~/widget/moduleController';
 import { modalModel } from '~/entities/modal';
 import { ModuleModal } from '~/entities/module';
 import { fetchAllModules } from '~/shared/api-actions';
@@ -31,7 +30,6 @@ function App(): JSX.Element {
       <Map />
 
       <ModuleModal isOpen={isOpenModal} onClose={handleCloseModule} />
-      <ModuleController />
     </Provider>
   );
 }
