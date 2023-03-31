@@ -16,7 +16,7 @@ const initialState: MapState = {
 };
 
 const mapSlice = createSlice({
-  name: 'hotels',
+  name: 'map',
   initialState,
   reducers: {
     changeActiveRegion: changeActiveRegionReducer,

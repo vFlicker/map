@@ -1,18 +1,12 @@
 import cn from 'classnames';
-import { MutableRefObject, useEffect } from 'react';
 
+import { mapModel } from '~/entities/map';
 import { getCurrentModule, moduleModel } from '~/entities/module';
 import { useAppDispatch, useAppSelector } from '~/shared/hooks';
 
 import classes from './ModuleChanger.module.css';
 
-type ModuleChangerProps = {
-  moduleButtonsRef: MutableRefObject<HTMLButtonElement[]>;
-};
-
-export function ModuleChanger({
-  moduleButtonsRef,
-}: ModuleChangerProps): JSX.Element {
+export function ModuleChanger(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const activeModuleId = useAppSelector(moduleModel.selectActiveModuleId);
@@ -21,25 +15,18 @@ export function ModuleChanger({
 
   const id = Number(activeModuleId);
 
-  useEffect(() => {
-    const buttons = moduleButtonsRef.current;
-    const button = buttons[id - 1];
-
-    if (button) {
-      button.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
-        inline: 'center',
-      });
-    }
-  }, [id, moduleButtonsRef]);
-
   const handlePrevButtonClick = () => {
-    dispatch(moduleModel.changeActiveModuleId(String(id - 1)));
+    const prevId = String(id - 1);
+
+    dispatch(moduleModel.changeActiveModuleId(prevId));
+    dispatch(mapModel.changeActiveRegion(prevId));
   };
 
   const handleNextButtonClick = () => {
-    dispatch(moduleModel.changeActiveModuleId(String(id + 1)));
+    const nextId = String(id + 1);
+
+    dispatch(moduleModel.changeActiveModuleId(nextId));
+    dispatch(mapModel.changeActiveRegion(nextId));
   };
 
   const modulesCount = allModules.length;
