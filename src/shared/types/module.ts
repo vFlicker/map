@@ -1,7 +1,10 @@
 type ModuleData = {
   title: string;
   goals: string[];
-  href: string;
+  href: SrcString;
+  previewSrc: SrcString;
+  moduleSrc: SrcString;
+  moduleBigSrc: SrcString;
 };
 
 export type ModuleType = {

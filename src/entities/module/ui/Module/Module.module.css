@@ -10,6 +10,7 @@
 
   color: white;
   background-color: rgba(0, 0, 0, 0.753);
+  background-size: cover;
 }
 
 .body::before {
@@ -23,7 +24,6 @@
   width: 290px;
   height: 362px;
 
-  background-image: url(../../../../shared/assets/images/attention.png);
   background-size: cover;
 }
 
@@ -57,17 +57,39 @@
 }
 
 .item {
+  position: relative;
+
   flex-shrink: 0;
 
   padding: 10px;
   border-radius: 8px;
 
   color: #FFFFFF;
-
-  background-image: linear-gradient(126.2deg, #C29931 -19.29%, rgba(19, 19, 19, 0) 48.06%), linear-gradient(317.39deg, #C29931 -12.34%, rgba(19, 19, 19, 0) 36.01%);
-
   font-size: 16px;
   line-height: 24px;
+
+  background-image:
+    linear-gradient(166.2deg, #C29931 -23.29%, rgba(19, 19, 19, 0) 31.06%),
+    linear-gradient(353.39deg, #C29931 -12.34%, rgba(19, 19, 19, 0) 26.01%);
+}
+
+.item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(85.26deg, #442C05 -19.66%, #E3C67C 44.4%, #5F4311 106.69%) border-box,
+    linear-gradient(96.04deg, #CCAB00 -1.72%, rgba(54, 36, 0, 0) 49.87%, #CCAB00 111.56%) border-box;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
 }
 
 .button {
@@ -167,5 +189,11 @@
     height: 66px;
     justify-content: center;
     align-items: center;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .body::before {
+    background-image: url(../../../../shared/assets/images/attention.png);
   }
 }

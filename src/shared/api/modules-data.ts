@@ -1,4 +1,9 @@
 import { ModuleType } from '~/shared/types/module';
+import {
+  moduleBigImagesSrc,
+  moduleImagesSrc,
+  previewImagesSrc,
+} from '../assets';
 
 export const modulesData: ModuleType[] = [
   {
@@ -13,6 +18,9 @@ export const modulesData: ModuleType[] = [
         'Правила спорта',
       ],
       href: 'https://www.google.com/',
+      previewSrc: previewImagesSrc[0],
+      moduleSrc: moduleImagesSrc[0],
+      moduleBigSrc: moduleBigImagesSrc[0],
     },
   },
   {
@@ -27,6 +35,9 @@ export const modulesData: ModuleType[] = [
         'Lorem ipsum dolor sit amet 1',
       ],
       href: 'https://www.google.com/',
+      previewSrc: previewImagesSrc[1],
+      moduleSrc: moduleImagesSrc[1],
+      moduleBigSrc: moduleBigImagesSrc[0],
     },
   },
   {
@@ -41,6 +52,9 @@ export const modulesData: ModuleType[] = [
         'Правила спорта',
       ],
       href: 'https://www.google.com/',
+      previewSrc: previewImagesSrc[2],
+      moduleSrc: moduleImagesSrc[2],
+      moduleBigSrc: moduleBigImagesSrc[0],
     },
   },
   {

@@ -17,10 +17,12 @@ export function ModulePreview({
 
   if (!module || !module.data) return null;
 
-  const { title } = module.data;
+  const { title, previewSrc } = module.data;
+
+  const styles = { backgroundImage: `url(${previewSrc})` };
 
   return (
-    <div className={classes.content}>
+    <div className={classes.content} style={styles}>
       <ModuleToken className={classes.token} id={id} size="small" />
       <h2 className={classes.title}>{title}</h2>
       <button className={classes.button} onClick={onOpen}>
