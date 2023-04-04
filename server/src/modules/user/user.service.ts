@@ -15,6 +15,8 @@ export class UserService {
     // this.userRepository.create(user);
     // this.moduleRepository.create(module);
 
+    console.log(222);
+
     return 'This action adds a new user';
   }
 

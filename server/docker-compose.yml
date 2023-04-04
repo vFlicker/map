@@ -7,14 +7,13 @@ services:
     command: npm run start:dev
     build:
       context: .
-      dockerfile: docker/nodejs/Dockerfile
       target: development
     env_file:
-      - docker/.env
+      - .env
     environment:
       DB_DATABASE_URL: postgresql://${DB_USERNAME}:${DB_PASSWORD}@postgres:${DB_PORT}/${DB_DATABASE_NAME}?schema=public
     volumes:
-      - ./server:/usr/src/app
+      - .:/usr/src/app
       - /usr/src/app/node_modules
     depends_on:
       - postgres
@@ -23,12 +22,10 @@ services:
       - map-network
 
   postgres:
-    image: postgres:14
+    image: postgres:14.4-alpine3.16
     container_name: map-postgres
     ports:
       - ${DB_PORT}:${DB_PORT}
-    env_file:
-      - docker/.env
     environment:
       POSTGRES_DB: ${DB_DATABASE_NAME}
       POSTGRES_USER: ${DB_USERNAME}
@@ -44,6 +41,6 @@ volumes:
   pg_data:
 
 networks:
-  map:
+  map-network:
     name: map-network
     driver: bridge

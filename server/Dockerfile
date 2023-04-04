@@ -7,13 +7,13 @@ WORKDIR /usr/src/app
 # Copy application dependency manifests to the container image.
 # A wildcard is used to ensure copying both package.json AND package-lock.json (when available).
 # Copying this first prevents re-running npm install on every code change.
-COPY ./server/package*.json ./
+COPY package*.json ./
 
 # Install app dependencies using the `npm ci` command instead of `npm install`
 RUN npm ci
 
 # Bundle app source
-COPY ./server .
+COPY . .
 
 # Use the node user from the image (instead of the root user)
 USER node
@@ -28,14 +28,14 @@ WORKDIR /usr/src/app
 # Copy application dependency manifests to the container image.
 # A wildcard is used to ensure copying both package.json AND package-lock.json (when available).
 # Copying this first prevents re-running npm install on every code change.
-COPY ./server/package*.json ./
+COPY package*.json ./
 
 # In order to run `npm run build` we need access to the Nest CLI.
 # The Nest CLI is a dev dependency,
 # In the previous development stage we ran `npm ci` which installed all dependencies.
 # So we can copy over the node_modules directory from the development image into this build image.
 COPY --from=development /usr/src/app/node_modules ./node_modules
-COPY ./server/ .
+COPY . .
 
 # Run the build command which creates the production bundle
 RUN npm run build
