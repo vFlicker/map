@@ -16,14 +16,14 @@ export function ModuleChanger(): JSX.Element {
   const id = Number(activeModuleId);
 
   const handlePrevButtonClick = () => {
-    const prevId = String(id - 1);
+    const prevId = id - 1;
 
     dispatch(moduleModel.changeActiveModuleId(prevId));
     dispatch(mapModel.changeActiveRegion(prevId));
   };
 
   const handleNextButtonClick = () => {
-    const nextId = String(id + 1);
+    const nextId = id + 1;
 
     dispatch(moduleModel.changeActiveModuleId(nextId));
     dispatch(mapModel.changeActiveRegion(nextId));

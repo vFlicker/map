@@ -46,7 +46,7 @@ export function Region({ region, isLocked }: RegionProps): JSX.Element {
   };
 
   const handleMouseEnter = () => dispatch(changeActiveRegion(region.id));
-  const handleMouseLeave = () => dispatch(changeActiveRegion(''));
+  const handleMouseLeave = () => dispatch(changeActiveRegion(-1));
 
   const className = cn(classes.region, {
     [classes.active]: !isLocked && isActive,
@@ -55,7 +55,7 @@ export function Region({ region, isLocked }: RegionProps): JSX.Element {
 
   return (
     <path
-      id={region.id}
+      id={region.id.toString()}
       d={region.d}
       className={className}
       onWheel={handleWheel}

@@ -17,9 +17,9 @@ export function ModulePreview({
 
   if (!module || !module.data) return null;
 
-  const { title, previewSrc } = module.data;
+  const { title, previewMobileAvailableSrc } = module.data;
 
-  const styles = { backgroundImage: `url(${previewSrc})` };
+  const styles = { backgroundImage: `url(${previewMobileAvailableSrc})` };
 
   return (
     <div className={classes.content} style={styles}>

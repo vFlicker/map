@@ -12,8 +12,8 @@ export const useMobileDefaultRegion = () => {
 
   useEffect(() => {
     if (isMobile) {
-      dispatch(moduleModel.changeActiveModuleId('1'));
-      dispatch(mapModel.changeActiveRegion('1'));
+      dispatch(moduleModel.changeActiveModuleId(1));
+      dispatch(mapModel.changeActiveRegion(1));
       dispatch(modalModel.close());
     }
   }, [dispatch, isMobile]);

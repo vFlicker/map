@@ -10,7 +10,7 @@ import {
 } from './reducers';
 
 const initialState: MapState = {
-  activeRegion: '',
+  activeRegion: -1,
   image: mapBackgroundX1ImageSrc,
   zoom: '1',
 };

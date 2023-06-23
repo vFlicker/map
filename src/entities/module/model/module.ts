@@ -12,7 +12,7 @@ import {
 } from './reducers';
 
 const initialState: ModuleState = modulesAdapter.getInitialState({
-  activeModuleId: '',
+  activeModuleId: -1,
   status: 'idle',
   error: null,
 });

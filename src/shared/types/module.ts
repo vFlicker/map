@@ -2,8 +2,11 @@ type ModuleData = {
   title: string;
   lessons: string[];
   href: SrcString;
-  previewSrc: SrcString;
-  moduleSrc: SrcString;
+  previewMobileAvailableSrc: SrcString;
+  previewMobileNotAvailableSrc: SrcString;
+  moduleMobileBigSrc: SrcString;
+  previewAvailableSrc: SrcString;
+  previewNotAvailableSrc: SrcString;
   moduleBigSrc: SrcString;
 };
 

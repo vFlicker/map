@@ -15,7 +15,8 @@ export function Module({ id }: ModuleProps): JSX.Element | null {
 
   if (!module || !module.data) return null;
 
-  const { lessons, href, title, moduleSrc, moduleBigSrc } = module.data;
+  const { lessons, href, title, moduleMobileBigSrc, moduleBigSrc } =
+    module.data;
 
   const lessonList = lessons.map((lesson) => (
     <li key={lesson} className={classes.item}>
@@ -24,7 +25,7 @@ export function Module({ id }: ModuleProps): JSX.Element | null {
   ));
 
   const styles = {
-    backgroundImage: `url(${isMobile ? moduleSrc : moduleBigSrc})`,
+    backgroundImage: `url(${isMobile ? moduleMobileBigSrc : moduleBigSrc})`,
   };
 
   return (

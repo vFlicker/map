@@ -1,2 +1,2 @@
-type ModuleId = string;
+type ModuleId = number;
 type SrcString = string;

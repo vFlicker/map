@@ -1,5 +1,5 @@
 export type RegionData = {
-  id: string;
+  id: number;
   d: string;
 };
 
