@@ -1,9 +1,10 @@
 import { EntityState } from '@reduxjs/toolkit';
 
-import { ModuleType } from '~/shared/types/module';
+import { ApiError } from '~/shared/api';
+import { ModuleType } from '~/shared/types';
 
 export type ModuleState = EntityState<ModuleType> & {
   activeModuleId: ModuleId;
-  status: string;
-  error: null;
+  status: 'idle' | 'loading' | 'success' | 'failure';
+  error: ApiError | null;
 };

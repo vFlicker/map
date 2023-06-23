@@ -10,5 +10,5 @@ export const fetchAllModulesFulfilled = (
   action: PayloadAction<NormalizedModules>,
 ): void => {
   modulesAdapter.setMany(state, action.payload.modules);
-  state.status = 'succeeded';
+  state.status = 'success';
 };

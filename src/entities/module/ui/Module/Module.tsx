@@ -15,11 +15,11 @@ export function Module({ id }: ModuleProps): JSX.Element | null {
 
   if (!module || !module.data) return null;
 
-  const { goals, href, title, moduleSrc, moduleBigSrc } = module.data;
+  const { lessons, href, title, moduleSrc, moduleBigSrc } = module.data;
 
-  const goalList = goals.map((goal) => (
-    <li key={goal} className={classes.item}>
-      {goal}
+  const lessonList = lessons.map((lesson) => (
+    <li key={lesson} className={classes.item}>
+      {lesson}
     </li>
   ));
 
@@ -34,7 +34,7 @@ export function Module({ id }: ModuleProps): JSX.Element | null {
         <h2 className={classes.title}>{title}</h2>
       </header>
       <div>
-        <ul className={classes.list}>{goalList}</ul>
+        <ul className={classes.list}>{lessonList}</ul>
         <a className={classes.button} href={href}>
           Перейти в модуль
         </a>

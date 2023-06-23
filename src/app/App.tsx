@@ -15,8 +15,9 @@ import './styles/index.css';
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
 
+  // TODO: hard code
   useEffect(() => {
-    dispatch(fetchAllModules());
+    dispatch(fetchAllModules('285607106'));
   }, [dispatch]);
 
   const isOpenModal = useAppSelector(modalModel.selectIsOpen);

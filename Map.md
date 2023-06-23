@@ -1,5 +1,19 @@
 # Карата
 
+список модулей
+https://test.alg777.com/bus/modules
+
+доступность модулей по uid
+https://test.alg777.com/bus/modules/{uid}
+
+модуль пройден
+[post запрос с полями uid и moduleID]
+https://test.alg777.com/bus/module-complete
+
+311888195 - 0 пройдено, должен только первый отображаться
+285607106 - 5 пройдено
+297381262 - 8 пройдено
+
 ## Фронтенд
 
 1. Хрестик

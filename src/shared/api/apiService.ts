@@ -1,7 +1,13 @@
-import { ModuleType } from '~/shared/types/module';
+import { ModuleType, UUID } from '../types';
+import { httpClient } from './httpClient';
+import { handleApiError } from './lib';
 
-import { modulesData } from './modules-data';
-
-export const getAllModules = async (): Promise<ModuleType[]> => {
-  return modulesData;
+export const getAllModules = async (userId: UUID): Promise<ModuleType[]> => {
+  try {
+    const { data } = await httpClient.get<ModuleType[]>(`/modules/${userId}`);
+    return data;
+  } catch (error) {
+    const result = handleApiError(error);
+    throw result;
+  }
 };

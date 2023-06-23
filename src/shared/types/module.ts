@@ -10,5 +10,5 @@ type ModuleData = {
 export type ModuleType = {
   id: ModuleId;
   isLocked: boolean;
-  data?: ModuleData;
+  data: ModuleData;
 };

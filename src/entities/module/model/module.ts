@@ -7,6 +7,8 @@ import { ModuleState } from '../types';
 import {
   changeActiveModuleIdReducer,
   fetchAllModulesFulfilled,
+  fetchAllModulesPending,
+  fetchAllModulesRejected,
 } from './reducers';
 
 const initialState: ModuleState = modulesAdapter.getInitialState({
@@ -22,7 +24,10 @@ const moduleSlice = createSlice({
     changeActiveModuleId: changeActiveModuleIdReducer,
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchAllModules.fulfilled, fetchAllModulesFulfilled);
+    builder
+      .addCase(fetchAllModules.pending, fetchAllModulesPending)
+      .addCase(fetchAllModules.fulfilled, fetchAllModulesFulfilled)
+      .addCase(fetchAllModules.rejected, fetchAllModulesRejected);
   },
 });
 
