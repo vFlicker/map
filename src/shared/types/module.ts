@@ -1,6 +1,6 @@
 type ModuleData = {
   title: string;
-  goals: string[];
+  lessons: string[];
   href: SrcString;
   previewSrc: SrcString;
   moduleSrc: SrcString;
