@@ -1,5 +1,5 @@
 /* eslint-disable import/order */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 
 import { Map } from '~/widget/map';
@@ -15,9 +15,17 @@ import './styles/index.css';
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
 
-  // TODO: hard code
+  const [error, setError] = useState(false);
+
   useEffect(() => {
-    dispatch(fetchAllModules('285607106'));
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('userId');
+
+    if (userId === null) {
+      setError(true);
+    } else {
+      dispatch(fetchAllModules(userId));
+    }
   }, [dispatch]);
 
   const isOpenModal = useAppSelector(modalModel.selectIsOpen);
@@ -25,6 +33,8 @@ function App(): JSX.Element {
   const handleCloseModule = () => {
     dispatch(modalModel.close());
   };
+
+  if (error === true) return <h1>Sorry, something went wrong.</h1>;
 
   return (
     <Provider store={store}>
