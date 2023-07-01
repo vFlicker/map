@@ -54,7 +54,14 @@ export function Modal({ isOpen, children, onClose }: ModalProps): JSX.Element {
         nodeRef={modalRef}
       >
         <section className={classes.modal} ref={modalRef}>
-          <div className={classes.inner}>{children}</div>
+          <div className={classes.inner}>
+            <div className={classes.content}>
+              <button className={classes.closeButton} onClick={onClose}>
+                <span className="visually-hidden">Close</span>
+              </button>
+              {children}
+            </div>
+          </div>
         </section>
       </CSSTransition>
     </ReactPortal>

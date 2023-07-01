@@ -21,10 +21,49 @@
 }
 
 .inner {
+  position: relative;
+
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100%;
+}
+
+.content {
+  position: relative;
+}
+
+.closeButton {
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  width: 40px;
+  height: 40px;
+
+  z-index: 2;
+}
+
+.closeButton::before,
+.closeButton::after {
+  content: '';
+
+  position: absolute;
+  left: 50%;
+
+  display: block;
+  width: 16px;
+  height: 2px;
+
+  background-color: #ffffff;
+}
+
+.closeButton::before {
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.closeButton::after {
+  transform: translateX(-50%) rotate(-45deg);
 }
 
 .enterDone {
