@@ -16,8 +16,6 @@ https://test.alg777.com/bus/module-complete
 
 ## Фронтенд
 
-1. Хрестик
-
 ## Бекенд
 
 ### Створили юзера

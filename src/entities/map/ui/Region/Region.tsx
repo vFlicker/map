@@ -10,9 +10,14 @@ import classes from './Region.module.css';
 type RegionProps = ComponentPropsWithRef<'path'> & {
   region: RegionData;
   isLocked: boolean;
+  onRegionClick: (id: ModuleId) => void;
 };
 
-export function Region({ region, isLocked }: RegionProps): JSX.Element {
+export function Region({
+  region,
+  isLocked,
+  onRegionClick,
+}: RegionProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   const [isActive, setIsActive] = useState(false);
@@ -27,6 +32,10 @@ export function Region({ region, isLocked }: RegionProps): JSX.Element {
     }
   }, [region.id, activeRegion]);
 
+  const handleClick = () => {
+    if (!isLocked) onRegionClick(region.id);
+  };
+
   const handleMouseEnter = () => dispatch(changeActiveRegion(region.id));
   const handleMouseLeave = () => dispatch(changeActiveRegion(-1));
 
@@ -40,6 +49,7 @@ export function Region({ region, isLocked }: RegionProps): JSX.Element {
       id={region.id.toString()}
       d={region.d}
       className={className}
+      onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     />

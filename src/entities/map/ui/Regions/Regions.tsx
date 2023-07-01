@@ -3,12 +3,23 @@ import { Region } from '../Region';
 
 type RegionsProps = {
   modulesIds: ModuleId[];
+  onRegionClick: (id: ModuleId) => void;
 };
 
-export function Regions({ modulesIds }: RegionsProps): JSX.Element {
+export function Regions({
+  modulesIds,
+  onRegionClick,
+}: RegionsProps): JSX.Element {
   const regionList = regions.map((region) => {
     const isLocked = modulesIds.includes(region.id);
-    return <Region key={region.id} region={region} isLocked={isLocked} />;
+    return (
+      <Region
+        key={region.id}
+        region={region}
+        isLocked={isLocked}
+        onRegionClick={onRegionClick}
+      />
+    );
   });
 
   return (

@@ -16,28 +16,9 @@ import {
 } from '../../hooks';
 import classes from './Map.module.css';
 
-function ModuleController(): JSX.Element | null {
+export function Map(): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const isMobile = useIsMobile();
-
-  const activeModuleId = useAppSelector(moduleModel.selectActiveModuleId);
-
-  const handleModuleOpen = () => {
-    dispatch(modalModel.open());
-  };
-
-  if (!isMobile) return null;
-
-  return (
-    <div className={classes.controller}>
-      <ModulePreview id={activeModuleId} onOpen={handleModuleOpen} />
-      <ModuleChanger />
-    </div>
-  );
-}
-
-export function Map(): JSX.Element {
   const mapRef = useRef<HTMLDivElement>(null);
   const buttonsRef = useRef<HTMLButtonElement[]>([]);
 
@@ -67,7 +48,14 @@ export function Map(): JSX.Element {
     <Lock key={id} className={classes.button} />
   ));
 
-  const regions = <Regions modulesIds={lockedModulesIds} />;
+  const handleRegionClick = (id: ModuleId) => {
+    dispatch(moduleModel.changeActiveModuleId(id));
+    dispatch(modalModel.open());
+  };
+
+  const regions = (
+    <Regions modulesIds={lockedModulesIds} onRegionClick={handleRegionClick} />
+  );
 
   const moduleController = !isOpenModal && <ModuleController />;
 
@@ -80,6 +68,27 @@ export function Map(): JSX.Element {
       </div>
 
       {moduleController}
+    </div>
+  );
+}
+
+function ModuleController(): JSX.Element | null {
+  const dispatch = useAppDispatch();
+
+  const isMobile = useIsMobile();
+
+  const activeModuleId = useAppSelector(moduleModel.selectActiveModuleId);
+
+  const handleModuleOpen = () => {
+    dispatch(modalModel.open());
+  };
+
+  if (!isMobile) return null;
+
+  return (
+    <div className={classes.controller}>
+      <ModulePreview id={activeModuleId} onOpen={handleModuleOpen} />
+      <ModuleChanger />
     </div>
   );
 }
