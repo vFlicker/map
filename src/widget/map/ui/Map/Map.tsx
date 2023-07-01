@@ -1,8 +1,8 @@
-import { useMemo, useRef } from 'react';
+import { useRef } from 'react';
 
 import { ModuleChanger } from '~/features/ModuleChanger';
 import { ShowModuleButton } from '~/features/ShowModuleButton';
-import { mapModel, Regions } from '~/entities/map';
+import { Regions } from '~/entities/map';
 import { modalModel } from '~/entities/modal';
 import { moduleModel, ModulePreview } from '~/entities/module';
 import { useAppDispatch, useAppSelector, useIsMobile } from '~/shared/hooks';
@@ -47,46 +47,33 @@ export function Map(): JSX.Element {
   useChangeZoneOnMobile(buttonsRef);
 
   const isOpenModal = useAppSelector(modalModel.selectIsOpen);
-  const image = useAppSelector(mapModel.selectImage);
-  const zoom = useAppSelector(mapModel.selectZoom);
   const lockedModulesIds = useAppSelector(moduleModel.selectLockedModulesIds);
   const unlockedModulesIds = useAppSelector(
     moduleModel.selectUnlockedModulesIds,
   );
 
-  const style = { backgroundImage: `url(${image})` };
-  const isDefaultMapZoom = zoom === '1';
+  const moduleButtons = unlockedModulesIds.map((id, index) => (
+    <ShowModuleButton
+      key={id}
+      className={classes.button}
+      moduleId={id}
+      ref={(button: HTMLButtonElement) => {
+        buttonsRef.current[index] = button;
+      }}
+    />
+  ));
 
-  const moduleButtons = useMemo(() => {
-    return (
-      isDefaultMapZoom &&
-      unlockedModulesIds.map((id, index) => (
-        <ShowModuleButton
-          key={id}
-          className={classes.button}
-          moduleId={id}
-          ref={(button: HTMLButtonElement) => {
-            buttonsRef.current[index] = button;
-          }}
-        />
-      ))
-    );
-  }, [isDefaultMapZoom, unlockedModulesIds]);
+  const lockButtons = lockedModulesIds.map((id) => (
+    <Lock key={id} className={classes.button} />
+  ));
 
-  const lockButtons = useMemo(() => {
-    return (
-      isDefaultMapZoom &&
-      lockedModulesIds.map((id) => <Lock key={id} className={classes.button} />)
-    );
-  }, [isDefaultMapZoom, lockedModulesIds]);
-
-  const regions = isDefaultMapZoom && <Regions modulesIds={lockedModulesIds} />;
+  const regions = <Regions modulesIds={lockedModulesIds} />;
 
   const moduleController = !isOpenModal && <ModuleController />;
 
   return (
     <div className={classes.map} ref={mapRef}>
-      <div className={classes.background} style={style}>
+      <div className={classes.background}>
         {moduleButtons}
         {lockButtons}
         {regions}

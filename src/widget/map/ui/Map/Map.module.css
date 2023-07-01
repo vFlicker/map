@@ -20,6 +20,8 @@
 
   width: 1920px;
   height: 1080px;
+
+  background-image: url(../../../../shared/assets/images/big-map.jpg);
 }
 
 .button {
