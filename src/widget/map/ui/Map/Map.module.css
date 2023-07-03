@@ -32,7 +32,7 @@
   width: 35px;
   height: 36px;
 
-  margin-left: 12px;
+  margin: 0 0 0 12px;
 }
 
 .previewBlock.active {
@@ -40,7 +40,7 @@
   align-items: center;
 
   width: 283px;
-  margin-left: -235px;
+  margin: 0 0 0 -235px;
   margin-top: -25px;
 }
 
@@ -97,6 +97,84 @@
 .previewBlock:nth-child(11) {
   top: 863px;
   left: 1325px;
+}
+
+/* Settings */
+
+.previewBlock.active:nth-child(2) {
+  margin: 0 -235px 0 0;
+}
+
+.previewBlock.active:nth-child(2) .previewBlockButton {
+  order: -1;
+  margin: 0 12px 0 0;
+}
+
+.previewBlock.active:nth-child(3) {
+  margin: 0 -235px 0 0;
+}
+
+.previewBlock.active:nth-child(3) .previewBlockButton {
+  order: -1;
+  margin: 0 12px 0 0;
+}
+
+.previewBlock.active:nth-child(4) .modulePreview {
+  position: relative;
+  top: 100px;
+  left: 140px;
+}
+
+.previewBlock.active:nth-child(6) {
+  margin: 0 -235px 0 0;
+}
+
+.previewBlock.active:nth-child(6) .modulePreview {
+  top: 30px;
+  position: relative;
+}
+
+.previewBlock.active:nth-child(6) .previewBlockButton {
+  order: -1;
+  margin: 0 12px 0 0;
+}
+
+
+.previewBlock.active:nth-child(7) .modulePreview {
+  position: relative;
+  top: 100px;
+  left: 140px;
+}
+
+.previewBlock.active:nth-child(8) .modulePreview {
+  position: relative;
+  top: 100px;
+  left: 140px;
+}
+
+.previewBlock.active:nth-child(9) .modulePreview {
+  position: relative;
+  top: 100px;
+  left: 140px;
+}
+
+
+.previewBlock.active:nth-child(10) {
+  margin: 0 -235px 0 0;
+}
+
+.previewBlock.active:nth-child(10) .previewBlockButton {
+  order: -1;
+  margin: 0 12px 0 0;
+}
+
+.previewBlock.active:nth-child(11) {
+  margin: 0 -235px 0 0;
+}
+
+.previewBlock.active:nth-child(11) .previewBlockButton {
+  order: -1;
+  margin: 0 12px 0 0;
 }
 
 /* ModuleController */

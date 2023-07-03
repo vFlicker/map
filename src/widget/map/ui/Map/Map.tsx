@@ -77,7 +77,13 @@ function PreviewBlocks({ buttonsRef, onOpen }: PreviewBlockProps): JSX.Element {
 
     return (
       <div key={id} className={className}>
-        {canShow && <ModulePreview id={id} onOpen={() => onOpen(id)} />}
+        {canShow && (
+          <ModulePreview
+            className={classes.modulePreview}
+            id={id}
+            onOpen={() => onOpen(id)}
+          />
+        )}
         <ShowModuleButton
           className={classes.previewBlockButton}
           moduleId={id}

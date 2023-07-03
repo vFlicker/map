@@ -7,12 +7,14 @@ import classes from './ModulePreview.module.css';
 
 type ModulePreviewProps = {
   id: ModuleId;
+  className?: string;
   disabled?: boolean;
   onOpen: () => void;
 };
 
 export function ModulePreview({
   id,
+  className = '',
   disabled = false,
   onOpen,
 }: ModulePreviewProps): JSX.Element | null {
@@ -22,14 +24,14 @@ export function ModulePreview({
 
   const { title, previewMobileAvailableSrc } = module.data;
 
-  const className = cn(classes.content, {
+  const classNames = cn(className, classes.content, {
     [classes.disabled]: disabled,
   });
 
   const styles = { backgroundImage: `url(${previewMobileAvailableSrc})` };
 
   return (
-    <div className={className} style={styles}>
+    <div className={classNames} style={styles}>
       <ModuleToken className={classes.token} id={id} size="small" />
       <h2 className={classes.title}>{title}</h2>
       <button className={classes.button} disabled={disabled} onClick={onOpen}>
