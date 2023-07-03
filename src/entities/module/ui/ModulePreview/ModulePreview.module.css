@@ -12,6 +12,10 @@
   background-color: #1c1803;
 }
 
+.content.disabled {
+  filter: grayscale(1);
+}
+
 .token {
   margin-bottom: 5px;
 }
@@ -38,6 +42,10 @@
   background-image: url(../../../../shared/assets/images/arrow.svg);
   background-repeat: no-repeat;
   background-position: right center;
+}
+
+.button:disabled {
+  cursor: not-allowed;
 }
 
 @media screen and (max-width: 991px) {

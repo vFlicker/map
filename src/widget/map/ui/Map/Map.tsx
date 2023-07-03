@@ -1,4 +1,5 @@
-import { useRef } from 'react';
+import cn from 'classnames';
+import { MutableRefObject, useRef } from 'react';
 
 import { ModuleChanger } from '~/features/ModuleChanger';
 import { ShowModuleButton } from '~/features/ShowModuleButton';
@@ -16,6 +17,11 @@ import {
 } from '../../hooks';
 import classes from './Map.module.css';
 
+type PreviewBlockProps = {
+  buttonsRef: MutableRefObject<HTMLButtonElement[]>;
+  onOpen: (id: ModuleId) => void;
+};
+
 export function Map(): JSX.Element {
   const dispatch = useAppDispatch();
 
@@ -29,46 +35,90 @@ export function Map(): JSX.Element {
 
   const isOpenModal = useAppSelector(modalModel.selectIsOpen);
   const lockedModulesIds = useAppSelector(moduleModel.selectLockedModulesIds);
-  const unlockedModulesIds = useAppSelector(
-    moduleModel.selectUnlockedModulesIds,
-  );
-
-  const moduleButtons = unlockedModulesIds.map((id, index) => (
-    <ShowModuleButton
-      key={id}
-      className={classes.button}
-      moduleId={id}
-      ref={(button: HTMLButtonElement) => {
-        buttonsRef.current[index] = button;
-      }}
-    />
-  ));
-
-  const lockButtons = lockedModulesIds.map((id) => (
-    <Lock key={id} className={classes.button} />
-  ));
 
   const handleRegionClick = (id: ModuleId) => {
     dispatch(moduleModel.changeActiveModuleId(id));
     dispatch(modalModel.open());
   };
 
-  const regions = (
-    <Regions modulesIds={lockedModulesIds} onRegionClick={handleRegionClick} />
-  );
-
   const moduleController = !isOpenModal && <ModuleController />;
 
   return (
     <div className={classes.map} ref={mapRef}>
       <div className={classes.background}>
-        {moduleButtons}
-        {lockButtons}
-        {regions}
+        <PreviewBlocks buttonsRef={buttonsRef} onOpen={handleRegionClick} />
+        <Regions
+          modulesIds={lockedModulesIds}
+          onRegionClick={handleRegionClick}
+        />
       </div>
 
       {moduleController}
     </div>
+  );
+}
+
+function PreviewBlocks({ buttonsRef, onOpen }: PreviewBlockProps): JSX.Element {
+  const isMobile = useIsMobile();
+
+  const isOpenModal = useAppSelector(modalModel.selectIsOpen);
+
+  const lockedModulesIds = useAppSelector(moduleModel.selectLockedModulesIds);
+  const unlockedModulesIds = useAppSelector(
+    moduleModel.selectUnlockedModulesIds,
+  );
+
+  const activeBlocks = unlockedModulesIds.map((id, index) => {
+    const canShow = !isOpenModal && !isMobile;
+
+    const className = cn(classes.previewBlock, {
+      [classes.active]: canShow,
+    });
+
+    return (
+      <div key={id} className={className}>
+        {canShow && <ModulePreview id={id} onOpen={() => onOpen(id)} />}
+        <ShowModuleButton
+          className={classes.previewBlockButton}
+          moduleId={id}
+          ref={(button: HTMLButtonElement) => {
+            buttonsRef.current[index] = button;
+          }}
+        />
+      </div>
+    );
+  });
+
+  const lockedBlocks = lockedModulesIds.map((id, index) => {
+    const canShow = !isOpenModal && !isMobile;
+
+    const className = cn(classes.previewBlock, {
+      [classes.active]: canShow,
+    });
+
+    if (index === 0) {
+      return (
+        <div key={id} className={className}>
+          {canShow && (
+            <ModulePreview id={id} disabled onOpen={() => onOpen(id)} />
+          )}
+          <Lock key={id} className={classes.previewBlockButton} />
+        </div>
+      );
+    }
+
+    return (
+      <div key={id} className={classes.previewBlock}>
+        <Lock key={id} />
+      </div>
+    );
+  });
+
+  return (
+    <>
+      {activeBlocks}
+      {lockedBlocks}
+    </>
   );
 }
 
