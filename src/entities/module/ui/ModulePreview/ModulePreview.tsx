@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { useAppSelector } from '~/shared/hooks';
+import { useAppSelector, useIsMobile } from '~/shared/hooks';
 
 import { selectModuleById } from '../../model/module';
 import { ModuleToken } from '../ModuleToken';
@@ -18,17 +18,23 @@ export function ModulePreview({
   disabled = false,
   onOpen,
 }: ModulePreviewProps): JSX.Element | null {
+  const isMobile = useIsMobile();
+
   const module = useAppSelector((state) => selectModuleById(state, id));
 
   if (!module || !module.data) return null;
 
-  const { title, previewMobileAvailableSrc } = module.data;
+  const { title, previewAvailableSrc, previewMobileAvailableSrc } = module.data;
 
   const classNames = cn(className, classes.content, {
     [classes.disabled]: disabled,
   });
 
-  const styles = { backgroundImage: `url(${previewMobileAvailableSrc})` };
+  const styles = {
+    backgroundImage: `url(${
+      isMobile ? previewMobileAvailableSrc : previewAvailableSrc
+    })`,
+  };
 
   return (
     <div className={classNames} style={styles}>
