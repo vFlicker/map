@@ -10,10 +10,13 @@
 
   color: white;
   background-color: #1c1803;
+
+  cursor: pointer;
 }
 
 .content.disabled {
   filter: grayscale(1);
+  cursor: not-allowed;
 }
 
 .token {

@@ -36,11 +36,20 @@ export function ModulePreview({
     })`,
   };
 
+  const handleClick = () => {
+    if (!disabled) onOpen();
+  };
+
   return (
-    <div className={classNames} style={styles}>
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+    <div className={classNames} style={styles} onClick={handleClick}>
       <ModuleToken className={classes.token} id={id} size="small" />
       <h2 className={classes.title}>{title}</h2>
-      <button className={classes.button} disabled={disabled} onClick={onOpen}>
+      <button
+        className={classes.button}
+        disabled={disabled}
+        onClick={handleClick}
+      >
         Открыть
       </button>
     </div>
