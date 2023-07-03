@@ -128,6 +128,7 @@ function ModuleController(): JSX.Element | null {
   const isMobile = useIsMobile();
 
   const activeModuleId = useAppSelector(moduleModel.selectActiveModuleId);
+  const isAllLocked = useAppSelector(moduleModel.selectIsAllLocked);
 
   const handleModuleOpen = () => {
     dispatch(modalModel.open());
@@ -137,8 +138,12 @@ function ModuleController(): JSX.Element | null {
 
   return (
     <div className={classes.controller}>
-      <ModulePreview id={activeModuleId} onOpen={handleModuleOpen} />
-      <ModuleChanger />
+      <ModulePreview
+        id={activeModuleId}
+        disabled={isAllLocked}
+        onOpen={handleModuleOpen}
+      />
+      <ModuleChanger disabled={isAllLocked} />
     </div>
   );
 }

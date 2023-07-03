@@ -9,6 +9,7 @@ import {
   fetchAllModulesFulfilled,
   fetchAllModulesPending,
   fetchAllModulesRejected,
+  setEmptyDataReducer,
 } from './reducers';
 
 const initialState: ModuleState = modulesAdapter.getInitialState({
@@ -21,6 +22,7 @@ const moduleSlice = createSlice({
   name: 'module',
   initialState,
   reducers: {
+    setEmptyData: setEmptyDataReducer,
     changeActiveModuleId: changeActiveModuleIdReducer,
   },
   extraReducers: (builder) => {
@@ -32,7 +34,7 @@ const moduleSlice = createSlice({
 });
 
 // Actions
-export const { changeActiveModuleId } = moduleSlice.actions;
+export const { changeActiveModuleId, setEmptyData } = moduleSlice.actions;
 
 // Reducer
 export default moduleSlice.reducer;
@@ -64,6 +66,14 @@ export const selectUnlockedModulesIds = createSelector(
   (unlockedModules) => {
     const unlockedModulesIds = unlockedModules.map(({ id }) => id);
     return unlockedModulesIds;
+  },
+);
+
+export const selectIsAllLocked = createSelector(
+  selectUnlockedModulesIds,
+  (unlockedModules) => {
+    const isAllLocked = unlockedModules.length === 0;
+    return isAllLocked;
   },
 );
 

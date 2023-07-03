@@ -6,7 +6,13 @@ import { useAppDispatch, useAppSelector } from '~/shared/hooks';
 
 import classes from './ModuleChanger.module.css';
 
-export function ModuleChanger(): JSX.Element {
+type ModuleChangerProps = {
+  disabled?: boolean;
+};
+
+export function ModuleChanger({
+  disabled = false,
+}: ModuleChangerProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   const activeModuleId = useAppSelector(moduleModel.selectActiveModuleId);
@@ -41,14 +47,14 @@ export function ModuleChanger(): JSX.Element {
       </div>
       <button
         className={cn(classes.button, classes.prev)}
-        disabled={isPrevButtonDisable}
+        disabled={isPrevButtonDisable || disabled}
         onClick={handlePrevButtonClick}
       >
         <span className="visually-hidden">Предыдущий модуль</span>
       </button>
       <button
         className={cn(classes.button, classes.next)}
-        disabled={isNextButtonDisable}
+        disabled={isNextButtonDisable || disabled}
         onClick={handleNextButtonClick}
       >
         <span className="visually-hidden">Следующий модуль</span>

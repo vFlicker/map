@@ -1,10 +1,10 @@
 /* eslint-disable import/order */
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 
 import { Map } from '~/widget/map';
 import { modalModel } from '~/entities/modal';
-import { ModuleModal } from '~/entities/module';
+import { ModuleModal, moduleModel } from '~/entities/module';
 import { fetchAllModules } from '~/shared/api-actions';
 import { useAppDispatch, useAppSelector } from '~/shared/hooks';
 
@@ -15,14 +15,12 @@ import './styles/index.css';
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const [error, setError] = useState(false);
-
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const userId = urlParams.get('userId');
 
     if (userId === null) {
-      setError(true);
+      dispatch(moduleModel.setEmptyData());
     } else {
       dispatch(fetchAllModules(userId));
     }
@@ -33,8 +31,6 @@ function App(): JSX.Element {
   const handleCloseModule = () => {
     dispatch(modalModel.close());
   };
-
-  if (error === true) return <h1>Sorry, something went wrong.</h1>;
 
   return (
     <Provider store={store}>
