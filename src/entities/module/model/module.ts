@@ -1,11 +1,14 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
 
-import { fetchAllModulesById } from '~/shared/api-actions';
+import { fetchAllModules, fetchAllModulesById } from '~/shared/api-actions';
 
 import { modulesAdapter } from '../helpers';
 import { ModuleState } from '../types';
 import {
   changeActiveModuleIdReducer,
+  fetchAllModulesByIdFulfilled,
+  fetchAllModulesByIdPending,
+  fetchAllModulesByIdRejected,
   fetchAllModulesFulfilled,
   fetchAllModulesPending,
   fetchAllModulesRejected,
@@ -25,9 +28,13 @@ const moduleSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAllModulesById.pending, fetchAllModulesPending)
-      .addCase(fetchAllModulesById.fulfilled, fetchAllModulesFulfilled)
-      .addCase(fetchAllModulesById.rejected, fetchAllModulesRejected);
+      .addCase(fetchAllModulesById.pending, fetchAllModulesByIdPending)
+      .addCase(fetchAllModulesById.fulfilled, fetchAllModulesByIdFulfilled)
+      .addCase(fetchAllModulesById.rejected, fetchAllModulesByIdRejected)
+
+      .addCase(fetchAllModules.pending, fetchAllModulesPending)
+      .addCase(fetchAllModules.fulfilled, fetchAllModulesFulfilled)
+      .addCase(fetchAllModules.rejected, fetchAllModulesRejected);
   },
 });
 
