@@ -1,8 +1,11 @@
 .content {
+  display: flex;
+  flex-direction: column;
+
   width: 100%;
-  max-width: 343px;
-  height: 155px;
-  padding: 17px 14px 20px;
+  max-width: 235px;
+  height: 143px;
+  padding: 14px 24px;
   border-radius: 12px;
 
   color: white;
@@ -17,9 +20,13 @@
   font-weight: 800;
   font-size: 1.6rem;
   line-height: 1.4;
+
+  margin: 0 0 4px;
 }
 
 .button {
+  margin-right: auto;
+  margin-top: auto;
   padding-right: 18px;
 
   font-weight: 400;
@@ -31,4 +38,13 @@
   background-image: url(../../../../shared/assets/images/arrow.svg);
   background-repeat: no-repeat;
   background-position: right center;
+}
+
+@media screen and (max-width: 991px) {
+  .content {
+    width: 100%;
+    max-width: 343px;
+    height: 155px;
+    padding: 17px 14px 20px;
+  }
 }

@@ -34,7 +34,7 @@ export function Module({ id }: ModuleProps): JSX.Element | null {
         <ModuleToken className={classes.token} id={id} size="big" />
         <h2 className={classes.title}>{title}</h2>
       </header>
-      <div>
+      <div className={classes.wrapper}>
         <ul className={classes.list}>{lessonList}</ul>
         <a className={classes.button} href={href}>
           Перейти в модуль
