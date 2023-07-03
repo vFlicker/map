@@ -1,6 +1,7 @@
 import cn from 'classnames';
 import { MutableRefObject, useRef } from 'react';
 
+import { BackButton } from '~/features/BackButton/BackButton';
 import { ModuleChanger } from '~/features/ModuleChanger';
 import { ShowModuleButton } from '~/features/ShowModuleButton';
 import { Regions } from '~/entities/map';
@@ -45,6 +46,8 @@ export function Map(): JSX.Element {
 
   return (
     <div className={classes.map} ref={mapRef}>
+      <BackButton className={classes.backButton} />
+
       <div className={classes.background}>
         <PreviewBlocks buttonsRef={buttonsRef} onOpen={handleRegionClick} />
         <Regions

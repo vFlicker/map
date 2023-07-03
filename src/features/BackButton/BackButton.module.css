@@ -1,0 +1,28 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 98px;
+  height: 38px;
+  border-radius: 5px;
+
+  color: #FFF;
+  background-color: rgba(81, 112, 125, 0.50);
+  font-size: 16px;
+
+  z-index: 2;
+}
+
+.button::before {
+  content: '';
+
+  display: block;
+
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+
+  background-image: url(../../shared/assets/images/back-arrow.svg);
+  background-repeat: no-repeat;
+}
