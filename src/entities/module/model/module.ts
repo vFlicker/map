@@ -1,6 +1,6 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
 
-import { fetchAllModules } from '~/shared/api-actions';
+import { fetchAllModulesById } from '~/shared/api-actions';
 
 import { modulesAdapter } from '../helpers';
 import { ModuleState } from '../types';
@@ -9,7 +9,6 @@ import {
   fetchAllModulesFulfilled,
   fetchAllModulesPending,
   fetchAllModulesRejected,
-  setEmptyDataReducer,
 } from './reducers';
 
 const initialState: ModuleState = modulesAdapter.getInitialState({
@@ -22,19 +21,18 @@ const moduleSlice = createSlice({
   name: 'module',
   initialState,
   reducers: {
-    setEmptyData: setEmptyDataReducer,
     changeActiveModuleId: changeActiveModuleIdReducer,
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAllModules.pending, fetchAllModulesPending)
-      .addCase(fetchAllModules.fulfilled, fetchAllModulesFulfilled)
-      .addCase(fetchAllModules.rejected, fetchAllModulesRejected);
+      .addCase(fetchAllModulesById.pending, fetchAllModulesPending)
+      .addCase(fetchAllModulesById.fulfilled, fetchAllModulesFulfilled)
+      .addCase(fetchAllModulesById.rejected, fetchAllModulesRejected);
   },
 });
 
 // Actions
-export const { changeActiveModuleId, setEmptyData } = moduleSlice.actions;
+export const { changeActiveModuleId } = moduleSlice.actions;
 
 // Reducer
 export default moduleSlice.reducer;

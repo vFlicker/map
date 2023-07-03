@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 
 import { Map } from '~/widget/map';
 import { modalModel } from '~/entities/modal';
-import { ModuleModal, moduleModel } from '~/entities/module';
-import { fetchAllModules } from '~/shared/api-actions';
+import { ModuleModal } from '~/entities/module';
+import { fetchAllModules, fetchAllModulesById } from '~/shared/api-actions';
 import { useAppDispatch, useAppSelector } from '~/shared/hooks';
 
 import { withProviders } from './providers';
@@ -20,9 +20,9 @@ function App(): JSX.Element {
     const userId = urlParams.get('userId');
 
     if (userId === null) {
-      dispatch(moduleModel.setEmptyData());
+      dispatch(fetchAllModules());
     } else {
-      dispatch(fetchAllModules(userId));
+      dispatch(fetchAllModulesById(userId));
     }
   }, [dispatch]);
 
