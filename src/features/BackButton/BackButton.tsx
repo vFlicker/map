@@ -5,22 +5,21 @@ import { useIsMobile } from '~/shared/hooks';
 
 import classes from './BackButton.module.css';
 
-type BackButtonProps = ComponentPropsWithoutRef<'button'>;
+type BackButtonProps = ComponentPropsWithoutRef<'a'>;
 
 export function BackButton({ className }: BackButtonProps): JSX.Element | null {
   const isMobile = useIsMobile();
 
   const classNames = cn(className, classes.button);
 
-  const handleClick = () => {
-    history.back();
-  };
-
   if (isMobile) return null;
 
   return (
-    <button className={classNames} onClick={handleClick}>
+    <a
+      href="https://academy.algbot.com/teach/control/stream"
+      className={classNames}
+    >
       Назад
-    </button>
+    </a>
   );
 }
