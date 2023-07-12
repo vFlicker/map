@@ -1,5 +1,6 @@
 import { regions } from '../../config';
 import { Region } from '../Region';
+import classes from './Regions.module.css';
 
 type RegionsProps = {
   modulesIds: ModuleId[];
@@ -26,6 +27,7 @@ export function Regions({
     <svg
       width="1920"
       height="1080"
+      className={classes.regions}
       viewBox="0 0 1920 1080"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

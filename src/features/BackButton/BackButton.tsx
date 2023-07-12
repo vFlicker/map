@@ -16,7 +16,7 @@ export function BackButton({ className }: BackButtonProps): JSX.Element | null {
 
   return (
     <a
-      href="https://academy.algbot.com/teach/control/stream"
+      href="https://academy.algbot.com/teach/control/stream/view/id/703133249"
       className={classNames}
     >
       Назад
